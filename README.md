@@ -1,67 +1,77 @@
 # UIGen
 
-AI-powered React component generator with live preview.
+UIGen is an AI-powered React component generator. Describe what you want to build in plain English and Claude generates production-ready React components with live preview — no setup, no config, no boilerplate.
 
-## Prerequisites
+![UIGen Preview](https://via.placeholder.com/800x450?text=UIGen+Preview)
 
-- Node.js 18+
-- npm
+## How it works
 
-## Setup
+UIGen runs a virtual file system entirely in memory. When you send a message, Claude writes JSX/TSX files using tool calls, and the preview iframe re-renders instantly via a browser-native ES module import map — no bundler, no build step.
 
-1. **Optional** Edit `.env` and add your Anthropic API key:
+## Features
 
-```
-ANTHROPIC_API_KEY=your-api-key-here
-```
+- **AI code generation** — Claude writes and edits your React files in real time
+- **Live preview** — Changes appear instantly in a sandboxed iframe
+- **Virtual file system** — No files are written to disk; everything lives in memory
+- **Code editor** — Monaco-powered editor with syntax highlighting for all generated files
+- **Project persistence** — Sign up to save and continue your projects across sessions
+- **Works without an API key** — A mock provider returns demo components so you can explore the UI immediately
 
-The project will run without an API key. Rather than using a LLM to generate components, static code will be returned instead.
+## Tech Stack
 
-2. Install dependencies and initialize database
+| Layer | Technology |
+| ----- | ---------- |
+| Framework | Next.js 15 (App Router) |
+| UI | React 19, Tailwind CSS v4, Radix UI |
+| AI | Anthropic Claude via Vercel AI SDK |
+| Editor | Monaco Editor |
+| Database | Prisma + SQLite |
+| Auth | JWT (jose) + HTTP-only cookies |
+| Testing | Vitest + React Testing Library |
+
+## Getting Started
+
+**Prerequisites:** Node.js 18+
+
+1. Clone the repo and install dependencies:
 
 ```bash
+git clone https://github.com/alizeeshan-07/UIGEN.git
+cd UIGEN
 npm run setup
 ```
 
-This command will:
+`npm run setup` installs dependencies, generates the Prisma client, and runs database migrations.
 
-- Install all dependencies
-- Generate Prisma client
-- Run database migrations
+1. (Optional) Add your Anthropic API key to a `.env` file:
 
-## Running the Application
+```env
+ANTHROPIC_API_KEY=your-api-key-here
+```
 
-### Development
+Without a key, UIGen uses a mock provider that returns static demo components.
+
+1. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Usage
 
-1. Sign up or continue as anonymous user
-2. Describe the React component you want to create in the chat
-3. View generated components in real-time preview
-4. Switch to Code view to see and edit the generated files
-5. Continue iterating with the AI to refine your components
+1. Sign up or continue as an anonymous user
+2. Describe the component you want — e.g. *"Create a pricing card with three tiers"*
+3. Watch the component appear in the live preview as Claude writes the code
+4. Switch to **Code** view to browse and edit the generated files
+5. Keep iterating in the chat to refine your design
 
-## Features
+## Scripts
 
-- AI-powered component generation using Claude
-- Live preview with hot reload
-- Virtual file system (no files written to disk)
-- Syntax highlighting and code editor
-- Component persistence for registered users
-- Export generated code
-
-## Tech Stack
-
-- Next.js 15 with App Router
-- React 19
-- TypeScript
-- Tailwind CSS v4
-- Prisma with SQLite
-- Anthropic Claude AI
-- Vercel AI SDK
+| Command | Description |
+| ------- | ----------- |
+| `npm run dev` | Start development server (Turbopack) |
+| `npm run build` | Build for production |
+| `npm test` | Run all tests |
+| `npm run db:reset` | Reset the database |
