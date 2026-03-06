@@ -2,8 +2,6 @@
 
 UIGen is an AI-powered React component generator. Describe what you want to build in plain English and Claude generates production-ready React components with live preview — no setup, no config, no boilerplate.
 
-![UIGen Preview](https://via.placeholder.com/800x450?text=UIGen+Preview)
-
 ## How it works
 
 UIGen runs a virtual file system entirely in memory. When you send a message, Claude writes JSX/TSX files using tool calls, and the preview iframe re-renders instantly via a browser-native ES module import map — no bundler, no build step.
